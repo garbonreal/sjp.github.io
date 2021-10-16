@@ -11,7 +11,7 @@ using namespace std;
 
 struct node
 {
-    lint id; // 0��ʾ������1��ʾ������
+    lint id;
     lint num; // ͳ�Ƶ��ھ��쳣���分解
     lint flag; // ��¼�Ƿ񱻸�bfs������
 };
