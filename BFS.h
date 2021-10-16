@@ -9,18 +9,23 @@ using namespace std;
 #ifndef ORGBFS
 #define ORGBFS
 
+//图中的顶点
 struct node
 {
     lint id; // id=0 表示正常点，id=1表示异常点
     lint num; // 记录该点二阶邻居内黑点数
-    lint flag; // 表记该顶点是否已经被bfs访问过
+    lint flag; // 表记该结点是否已经被bfs访问过
 };
 
+//BFS算法类
 class orgBFS
 {
 public:
+    //图的结点数
     lint n;
+    //存储结点的数组
     vector<node> nodes;
+    //存储图
     vector<vector<lint>> G;
 
     orgBFS(lint n_)
@@ -78,9 +83,11 @@ public:
         vec_tmp.clear();
         while(deep<2)
         {
+            //对边缘结点集中的每一个结点，分别继续进行bfs
             for(lint s=0; s<U.size(); s++)
             {
                 i=U[s];
+                //对于一个结点，要遍历所有一阶邻居
                 for(lint k=0; k<G[i].size(); k++)
                 {
                     j=G[i][k];

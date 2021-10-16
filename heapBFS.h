@@ -9,6 +9,7 @@ using namespace std;
 #ifndef HEAPBFS_H
 #define HEAPBFS_H
 
+//每个结点有两个列表，分别存储其一阶邻居的黑点和白点，列表中的元素为heapNode
 class heapNode{
 public:
 	lint n;
@@ -51,7 +52,9 @@ public:
     int id;
     lint index;
     lint num;
+    //以vector的方式存储一阶邻居的白点
     vector<heapNode> whiteNodes;
+    //以最小堆的方式存储一阶邻居的黑点
     priority_queue<heapNode,vector<heapNode>,greater<heapNode>> blackNodes;
     vertex(lint i)
     {
