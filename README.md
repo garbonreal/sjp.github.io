@@ -8,8 +8,9 @@
 
 time unit: x 10-8 s 
 facebook_combined, node=4039, edge=88234
+
+|Black%|BFS|heapBFS|
 | :----: | :--------: | :--------: |
-|Black%	     |BFS|		heapBFS|
 |5%	     10287856	11683402
 |10%	     9912179	34124908
 |15%	     10159106	68309399
