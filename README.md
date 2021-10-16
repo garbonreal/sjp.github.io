@@ -7,7 +7,7 @@
 在 snap 上选取了四张结点数从 10^3 到 10^5 的图，随机将图中的部分顶点设置为异常点(5% ~ 40%)，实验得到的数据如下:
 
 time unit: x 10-8 s 
-# facebook_combined, node=4039, edge=88234
+### facebook_combined, node=4039, edge=88234
 |Black%|BFS|heapBFS|
 | :----: | :--------: | :--------: |
 |5%|10287856|11683402
