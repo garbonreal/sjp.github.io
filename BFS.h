@@ -11,9 +11,9 @@ using namespace std;
 
 struct node
 {
-    lint id;
-    lint num; // ͳ�Ƶ��ھ��쳣���分解
-    lint flag; // ��¼�Ƿ񱻸�bfs������
+    lint id; // id=0 表示正常点，id=1表示异常点
+    lint num; // 记录该点二阶邻居内黑点数
+    lint flag; // 表记该顶点是否已经被bfs访问过
 };
 
 class orgBFS
@@ -70,7 +70,7 @@ public:
     void BFSUtil(lint from)
     {
         vector<lint> vec_tmp;
-        vector<lint> U; //��ǰ�ı�Ե���㼯
+        vector<lint> U; //U记录边缘点，下一次就从其中的点开始扩展
         lint deep=0,i,j;
         vec_tmp.push_back(from);
         nodes[from].flag=from;
