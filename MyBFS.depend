@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1634298611 source:c:\computer scinece\algorithm\mybfs\main.cpp
+	<iostream>
+	<vector>
+	<deque>
+	<windows.h>
+	<fstream>
+	<string>
+	"heapBFS.h"
+	"BFS.h"
+	"createdata.h"
+
+1633833371 source:c:\computer scinece\algorithm\mybfs\function.cpp
+	<windows.h>
+
+1634298507 c:\computer scinece\algorithm\mybfs\heapbfs.h
+	<iostream>
+	<queue>
+	<vector>
+	<algorithm>
+
+1633935331 c:\computer scinece\algorithm\mybfs\heapnode.h
+	<iostream>
+
+1634279193 c:\computer scinece\algorithm\mybfs\bfs.h
+	<iostream>
+	<queue>
+	<vector>
+	<algorithm>
+
+1634109782 c:\computer scinece\algorithm\mybfs\mybfs.h
+	<iostream>
+	<queue>
+	<set>
+	<vector>
+	<algorithm>
+
+1634298648 c:\computer scinece\algorithm\mybfs\createdata.h
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<algorithm>
+	<fstream>
+	<vector>
+

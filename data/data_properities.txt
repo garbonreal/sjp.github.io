@@ -1,0 +1,16 @@
+data/facebook_combined.txt
+data/facebook_combined_blackNodes.txt
+data/facebook_combined_blackNumber.txt
+data/facebook_combined_introduction.txt
+data/facebook_large.txt
+data/facebook_large_blackNodes.txt
+data/facebook_large_blackNumber.txt
+data/facebook_large_introduction.txt
+data/com-dblp.ungraph.txt
+data/com-dblp_blackNodes.txt
+data/com-dblp_blackNumber.txt
+data/com-dblp_introduction.txt
+data/github_developer.txt
+data/github_developer_blackNodes.txt
+data/github_developer_blackNumber.txt
+data/github_developer_introduction.txt

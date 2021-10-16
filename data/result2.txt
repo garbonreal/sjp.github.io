@@ -1,0 +1,25 @@
+time unit: x 10-8 s 
+github_developer, node=37700, edge=289003
+Black%	     BFS	heapBFS
+time unit: x 10-8 s 
+github_developer, node=37700, edge=289003
+Black%	     BFS	heapBFS
+time unit: x 10-8 s 
+facebook_combined, node=4039, edge=88234
+Black%	     BFS	heapBFS
+5%	     9646733	10638314
+10%	     9810559	32742155
+15%	     9953524	62350159
+20%	     9914122	96294932
+25%	     10192114	128708608
+time unit: x 10-8 s 
+facebook_combined, node=4039, edge=88234
+Black%	     BFS	heapBFS
+5%	     9759669	14319743
+10%	     9850985	35886909
+time unit: x 10-8 s 
+facebook_combined, node=4039, edge=88234
+Black%	     BFS	heapBFS
+5%	     9934701	10137169
+10%	     10074510	30268342
+15%	     11060125	53864405
