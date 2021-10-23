@@ -4,58 +4,66 @@
 #include <vector>
 #include <algorithm>
 
+#define lint long long
+
 using namespace std;
 #ifndef MYBFS
 #define MYBFS
 
 struct mynode
 {
-    int id; // 0表示正常，1表示不正常
-    int num; // 统计的邻居异常点数
-    int flag; // 记录是否被该bfs遍历过
-    set<int> visited;
+    int id;                // 0表示正常，1表示不正常
+    lint num;              // 统计的邻居异常点数
+    lint flag;             // 记录是否被该bfs遍历过,-1表示完成统计的点
+    vector<lint> visitedF; // 记录其一阶黑点
+    set<lint> visited;    // 记录计算该结点前已发现的黑点
 };
 
 class myBFS
 {
 private:
-    int n;
+    // 总的结点数
+    lint n;
+    // 结点数组，标号从0开始
     vector<mynode> nodes;
-    vector<vector<int>> G;
-    deque<vector<int>> Uarray;
+    // 存储图的边关系
+    vector<vector<lint>> G;
 
 public:
-    myBFS(int n_)
+    myBFS(lint n_)
     {
         n = n_;
-        vector<int> vec_tmp;
-        for(int i=0;i<n;i++)
+        vector<lint> vec_tmp;
+        for (lint i = 0; i < n; i++)
         {
             mynode temp;
-            temp.num=0;
-            temp.flag=-1;
-            temp.id=0;
-            temp.visited.insert(i);
+            temp.num = 0;
+            temp.flag = -1;
+            temp.id = 0;
             nodes.push_back(temp);
             G.push_back(vec_tmp);
         }
     }
     ~myBFS(){}
 
-    void addEdge_nodict(int i,int j)
+    void addEdge_nodict(lint i, lint j)
     {
-        for(int k=0; k<G[j].size(); k++)
-        {
-            if(G[j][k]==i)
-                return;
-        }
         G[i].push_back(j);
         G[j].push_back(i);
+        if(nodes[i].id>0){
+            nodes[j].visitedF.push_back(i);
+            nodes[j].visited.insert(i);
+        }
+        if(nodes[j].id>0){
+            nodes[i].visitedF.push_back(j);
+            nodes[i].visited.insert(j);
+        }
+            
     }
 
-    void setAbnormalPoints(vector<int> arr)
+    void setAbnormalPoints(vector<lint> arr)
     {
-        for(int i=0;i<arr.size();i++)
+        for (lint i = 0; i < arr.size(); i++)
         {
             nodes[arr[i]].id++;
         }
@@ -63,79 +71,42 @@ public:
 
     void printanw()
     {
-        for(int i=0;i<n;i++)
+        for (lint i = 0; i < n; i++)
         {
-            cout<<nodes[i].num<<" ";
+            cout << nodes[i].num << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
 
-    void MyBFSUtil_map(int from)
+    void MyBFSUtil(lint from)
     {
-        int j,v,i,num=0;
-        vector<int> vec_tmp;
-        for(int k=0; k<G[from].size(); k++)
+        int j,i;
+        // 对每个一阶邻居
+        for (int k = 0; k < G[from].size(); k++)
         {
-            j=G[from][k];
-            if(G[j].empty())
-                continue;
-            if(nodes[j].visited.find(from)==nodes[j].visited.end())
-            {
-                nodes[j].visited.insert(from);
-                if(nodes[j].id>0)
-                    nodes[from].num++;
-                if(nodes[from].id>0)
-                    nodes[j].num++;
-            }
-            vec_tmp.push_back(j);
-        }
-        //给一阶邻居经过该点的二阶信息，得到新的边缘顶点集
-        for(int k=0;k<vec_tmp.size();k++)
-        {
-            j=vec_tmp[k];
-            if(nodes[j].id>0)
-                num=1;
-            else num=0;
-            for(int s=0;s<vec_tmp.size();s++)
-            {
-                v=vec_tmp[s];
-                if(nodes[j].visited.find(v)==nodes[j].visited.end()&&v!=j)
-                {
-                    if(nodes[v].id>0)
-                        nodes[j].num++;
-                    nodes[v].num+=num;
-                    nodes[v].visited.insert(j);
-                    nodes[j].visited.insert(v);
+            j = G[from][k];
+            // 对每个一阶点，遍历from的一阶黑点集，如果不重复就加入总的黑点集 visit
+            for(lint i = 0; i < nodes[from].visitedF.size(); i++){
+                lint temp =  nodes[from].visitedF[i];
+                // 此点还没有加入 j 的已知黑点集
+                if(nodes[j].visited.find(temp)==nodes[j].visited.end()){
+                    nodes[j].visited.insert(temp);
                 }
             }
         }
-        //继续二阶遍历
-        for(int s=0; s<vec_tmp.size(); s++)
-        {
-            i=vec_tmp[s];
-            for(int k=0; k<G[i].size(); k++)
-            {
-                j=G[i][k];
-                if(G[j].empty())
-                    continue;
-                if(nodes[j].visited.find(from)==nodes[j].visited.end())
-                {
-                    nodes[j].visited.insert(from);
-                    if(nodes[j].id>0)
-                        nodes[from].num++;
-                    if(nodes[from].id>0)
-                        nodes[j].num++;
-                }
-            }
-        }
-        G[from].clear();
     }
 
-    void MyBFSALL_map()
+    void MyBFSALL()
     {
-        for(int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
         {
-            MyBFSUtil_map(i);
+            MyBFSUtil(i);
+        }
+        for (int i = 0; i < n; i++){
+            if(nodes[i].id>0)
+                nodes[i].num=nodes[i].visited.size()-1;
+            else
+                nodes[i].num=nodes[i].visited.size();
         }
     }
 };
