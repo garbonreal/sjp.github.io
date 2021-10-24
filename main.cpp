@@ -59,8 +59,8 @@ void createNewGraph(orgBFS &b, heapBFS &hb, myBFS &mb, blackBFS &bb, createdata 
     }
     //hb.setAbnormalPoints(abnodes);
     b.setAbnormalPoints(abnodes);
-    //mb.setAbnormalPoints(abnodes);
-    bb.setAbnormalPoints(abnodes);
+    mb.setAbnormalPoints(abnodes);
+    //bb.setAbnormalPoints(abnodes);
 
     //图记录所有的边情况
     for (lint i = 0; i < m; i++)
@@ -68,8 +68,8 @@ void createNewGraph(orgBFS &b, heapBFS &hb, myBFS &mb, blackBFS &bb, createdata 
         fin >> u >> v;
         //hb.addEdge_nodict(u, v);
         b.addEdge_nodict(u, v);
-        //mb.addEdge_nodict(u, v);
-        bb.addEdge_nodict(u,v);
+        mb.addEdge_nodict(u, v);
+        //bb.addEdge_nodict(u,v);
     }
 
     fin.close();
@@ -81,7 +81,7 @@ int main()
 {
     createdata cd;
     string in="data/data_properities.txt";
-    string out="data/result4.txt";
+    string out="data/result3.txt";
     ifstream fins(in);
     ofstream fouts;
     fouts.open(out,ios::app);
@@ -121,9 +121,9 @@ int main()
         for(int i=1; i<=20;)
         {
             heapBFS hb(1);
-            myBFS mb(1);
+            myBFS mb(MAX);
             orgBFS b(MAX);
-            blackBFS bb(MAX);
+            blackBFS bb(1);
 
             createNewGraph(b, hb, mb, bb, cd, i, s, s_b, s_n);
 
@@ -141,20 +141,20 @@ int main()
 //            QueryPerformanceCounter(&t2);
 //            lint temp2=t2.QuadPart-t1.QuadPart;
 //
-//            //记录myBFS消耗的时间
-//            QueryPerformanceCounter(&t1);
-//            mb.MyBFSALL();
-//            QueryPerformanceCounter(&t2);
-//            lint temp3=t2.QuadPart-t1.QuadPart;
-
-            //记录blackBFS消耗的时间
+            //记录myBFS消耗的时间
             QueryPerformanceCounter(&t1);
-            bb.blackBFSALL();
+            mb.MyBFSALL();
             QueryPerformanceCounter(&t2);
-            lint temp4=t2.QuadPart-t1.QuadPart;
+            lint temp3=t2.QuadPart-t1.QuadPart;
 
-            fouts<<i<<"%"<<'\t'<<temp1<<'\t'<<temp4<<endl;//<<'\t'<<temp3<<'\t'<<temp4<<endl;
-            cout<<i<<"%"<<'\t'<<temp1<<'\t'<<temp4<<endl;//<<'\t'<<temp3<<'\t'<<temp4<<endl;
+//            //记录blackBFS消耗的时间
+//            QueryPerformanceCounter(&t1);
+//            bb.blackBFSALL();
+//            QueryPerformanceCounter(&t2);
+//            lint temp4=t2.QuadPart-t1.QuadPart;
+
+            fouts<<i<<"%"<<'\t'<<temp1<<'\t'<<temp3<<endl;//<<'\t'<<temp3<<'\t'<<temp4<<endl;
+            cout<<i<<"%"<<'\t'<<temp1<<'\t'<<temp3<<endl;//<<'\t'<<temp3<<'\t'<<temp4<<endl;
 
             if(i<5)
                 i++;

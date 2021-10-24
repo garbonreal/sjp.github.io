@@ -1,6 +1,6 @@
 #include <iostream>
 #include <queue>
-#include <set>
+#include <unordered_set>
 #include <vector>
 #include <algorithm>
 
@@ -16,7 +16,7 @@ struct mynode
     lint num;              // 统计的邻居异常点数
     lint flag;             // 记录是否被该bfs遍历过,-1表示完成统计的点
     vector<lint> visitedF; // 记录其一阶黑点
-    set<lint> visited;    // 记录计算该结点前已发现的黑点
+    unordered_set<lint> visited;    // 记录计算该结点前已发现的黑点
 };
 
 class myBFS
