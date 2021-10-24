@@ -43,3 +43,49 @@
 	<fstream>
 	<vector>
 
+1635056314 source:c:\computer scinece\algorithm\mybfs\bfs-for-black-nodes\main.cpp
+	<iostream>
+	<vector>
+	<deque>
+	<windows.h>
+	<fstream>
+	<string>
+	"heapBFS.h"
+	"BFS.h"
+	"createdata.h"
+	"myBFS.h"
+	"blackBFS.h"
+
+1635043449 c:\computer scinece\algorithm\mybfs\bfs-for-black-nodes\heapbfs.h
+	<iostream>
+	<queue>
+	<vector>
+	<algorithm>
+
+1635043449 c:\computer scinece\algorithm\mybfs\bfs-for-black-nodes\bfs.h
+	<iostream>
+	<queue>
+	<vector>
+	<algorithm>
+
+1634298648 c:\computer scinece\algorithm\mybfs\bfs-for-black-nodes\createdata.h
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<algorithm>
+	<fstream>
+	<vector>
+
+1635043449 c:\computer scinece\algorithm\mybfs\bfs-for-black-nodes\mybfs.h
+	<iostream>
+	<queue>
+	<set>
+	<vector>
+	<algorithm>
+
+1635043449 c:\computer scinece\algorithm\mybfs\bfs-for-black-nodes\blackbfs.h
+	<iostream>
+	<queue>
+	<vector>
+	<algorithm>
+

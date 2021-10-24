@@ -46,11 +46,6 @@ public:
 
     void addEdge_nodict(lint i,lint j)
     {
-        for(lint k=0; k<G[j].size(); k++)
-        {
-            if(G[j][k]==i)
-                return;
-        }
         G[i].push_back(j);
         G[j].push_back(i);
     }
@@ -63,9 +58,9 @@ public:
         }
     }
 
-    void printanw()
+    void printanw(lint k)
     {
-        for(lint i=0;i<n;i++)
+        for(lint i=0;i<k;i++)
         {
             cout<<nodes[i].num<<" ";
         }

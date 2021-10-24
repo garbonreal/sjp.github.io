@@ -68,9 +68,9 @@ public:
         }
     }
 
-    void printanw()
+    void printanw(lint k)
     {
-        for (lint i = 0; i < n; i++)
+        for (lint i = 0; i < k; i++)
         {
             cout << nodes[i].num << " ";
         }

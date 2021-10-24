@@ -104,9 +104,9 @@ public:
         }
     }
 
-    void printanw()
+    void printanw(lint k)
     {
-        for(lint i=0;i<20;i++)
+        for(lint i=0;i<k;i++)
             cout<<vertexes[i].num<<" ";
         cout<<endl;
     }

@@ -33,6 +33,7 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="BFS.h" />
+		<Unit filename="blackBFS.h" />
 		<Unit filename="createdata.h" />
 		<Unit filename="heapBFS.h" />
 		<Unit filename="main.cpp" />
