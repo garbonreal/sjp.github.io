@@ -36,6 +36,7 @@
 		<Unit filename="createdata.h" />
 		<Unit filename="heapBFS.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="myBFS.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

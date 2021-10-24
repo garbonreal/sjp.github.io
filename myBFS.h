@@ -58,7 +58,6 @@ public:
             nodes[i].visitedF.push_back(j);
             nodes[i].visited.insert(j);
         }
-            
     }
 
     void setAbnormalPoints(vector<lint> arr)
@@ -82,7 +81,7 @@ public:
     {
         int j,i;
         // 对每个一阶邻居
-        for (int k = 0; k < G[from].size(); k++)
+        for (lint k = 0; k < G[from].size(); k++)
         {
             j = G[from][k];
             // 对每个一阶点，遍历from的一阶黑点集，如果不重复就加入总的黑点集 visit
@@ -98,11 +97,11 @@ public:
 
     void MyBFSALL()
     {
-        for (int i = 0; i < n; i++)
+        for (lint i = 0; i < n; i++)
         {
             MyBFSUtil(i);
         }
-        for (int i = 0; i < n; i++){
+        for (lint i = 0; i < n; i++){
             if(nodes[i].id>0)
                 nodes[i].num=nodes[i].visited.size()-1;
             else

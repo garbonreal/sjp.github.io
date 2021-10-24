@@ -6,32 +6,33 @@
 #define lint long long
 
 using namespace std;
-#ifndef ORGBFS
-#define ORGBFS
+#ifndef BLACKBFS
+#define BLACKBFS
 
 //图中的顶点
-struct node
+struct bnode
 {
     lint id; // id=0 表示正常点，id=1表示异常点
     lint num; // 记录该点二阶邻居内黑点数
     lint flag; // 表记该结点是否已经被bfs访问过
+    vector<lint> blacks; //存储该结点的一阶黑点
 };
 
 //BFS算法类
-class orgBFS
+class blackBFS
 {
 public:
     //图的结点数
     lint n;
     //存储结点的数组
-    vector<node> nodes;
+    vector<bnode> nodes;
     //存储图
     vector<vector<lint>> G;
 
-    orgBFS(lint n_)
+    blackBFS(lint n_)
     {
         n = n_;
-        node temp;
+        bnode temp;
         vector<lint> vec_tmp;
         temp.num=0;
         temp.flag=-1;
@@ -42,7 +43,7 @@ public:
             G.push_back(vec_tmp);
         }
     }
-    ~orgBFS(){}
+    ~blackBFS(){}
 
     void addEdge_nodict(lint i,lint j)
     {
@@ -53,6 +54,12 @@ public:
         }
         G[i].push_back(j);
         G[j].push_back(i);
+        if(nodes[i].id>0){
+            nodes[j].blacks.push_back(i);
+        }
+        if(nodes[j].id>0){
+            nodes[i].blacks.push_back(j);
+        }
     }
 
     void setAbnormalPoints(vector<lint> arr)
@@ -72,43 +79,35 @@ public:
         cout<<endl;
     }
 
-    void BFSUtil(lint from)
+    void blackBFSUtil(lint from)
     {
-        vector<lint> vec_tmp;
-        vector<lint> U; //U记录边缘点，下一次就从其中的点开始扩展
-        lint deep=0,i,j;
-        vec_tmp.push_back(from);
+        int j,num=0;
+        vector<lint>::iterator i;
+        // 将源点本身标记为已访问
         nodes[from].flag=from;
-        U = vec_tmp;
-        vec_tmp.clear();
-        while(deep<2)
-        {
-            //对边缘结点集中的每一个结点，分别继续进行bfs
-            for(lint s=0; s<U.size(); s++)
-            {
-                i=U[s];
-                //对于一个结点，要遍历所有一阶邻居
-                for(lint k=0; k<G[i].size(); k++)
-                {
-                    j=G[i][k];
-                    if(nodes[j].flag==from)
-                        continue;
-                    nodes[j].flag=from;
-                    if(nodes[j].id>0)
-                        nodes[from].num++;
-                    vec_tmp.push_back(j);
+        // 一阶黑点都算做已访问，并增加黑点数
+        for(i=nodes[from].blacks.begin();i!=nodes[from].blacks.end();i++){
+            nodes[(*i)].flag=from;
+        }
+        num += nodes[from].blacks.size();
+        // 对所有一阶邻居的黑点集做 bfs 遍历
+        for(lint k=0;k<G[from].size();k++){
+            j = G[from][k];
+            for(i=nodes[j].blacks.begin();i!=nodes[j].blacks.end();i++){
+                if(nodes[*i].flag!=from){
+                    num++;
+                    nodes[*i].flag=from;
                 }
             }
-            U=vec_tmp;
-            deep++;
         }
+        nodes[from].num = num;
     }
 
-    void BFSALL()
+    void blackBFSALL()
     {
         for(lint i=0; i<n; i++)
         {
-            BFSUtil(i);
+            blackBFSUtil(i);
         }
     }
 };
